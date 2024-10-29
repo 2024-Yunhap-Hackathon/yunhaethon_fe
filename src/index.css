@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "GSansBold";
+  font-weight: normal;
+  src: url("./assets/GSansBold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "GSansLight";
+  font-weight: normal;
+  src: url("./assets/GSansLight.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "GSansMedium";
+  font-weight: normal;
+  src: url("./assets/GSansMedium.otf") format("opentype");
+}
