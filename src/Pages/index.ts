@@ -9,3 +9,5 @@ export * from "./Mobile/Buy";
 export * from "./Mobile/Notice";
 export * from "./Mobile/Code";
 export * from "./Mobile/Album";
+export * from "./Mobile/Detail";
+export * from "./Mobile/Replace";

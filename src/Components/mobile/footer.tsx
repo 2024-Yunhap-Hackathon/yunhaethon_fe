@@ -54,7 +54,7 @@ const Layout = styled.div`
   position: fixed;
   bottom: 0;
   left: 0;
-  padding-top: 4px solid ${theme.blue[400]};
+  border-top: 4px solid ${theme.blue[50]};
 `;
 const ContentsLayout = styled.div`
   display: flex;

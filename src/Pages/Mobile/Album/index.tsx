@@ -7,7 +7,7 @@ export const Album = () => {
   return (
     <Container>
       <PrevButtonContainer>
-        <Icon icon="ic:baseline-arrow-back-ios" />
+        <Icon icon="ic:baseline-arrow-back-ios" width={24} />
         <PrevButtonText>카리나</PrevButtonText>
       </PrevButtonContainer>
       <AlbumContainer>
