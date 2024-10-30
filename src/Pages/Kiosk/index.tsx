@@ -6,9 +6,15 @@ import { TypeSelect } from "./TypeSelect";
 import { PaymentSelect } from "./PaymentSelect";
 import { Payment } from "./Payment";
 import { Capture } from "./Capture";
+import { CaptureSelect } from "./CaptureSelect";
+import { BackSelect } from "./BackSelect";
+import { Download } from "./Download";
 
 interface IData {
-  images: never[];
+  images: Array<{
+    name: string;
+    selected: boolean;
+  }>;
   voice: undefined;
   type: string;
   backgroundCode: string;
@@ -41,7 +47,15 @@ export const Kiosk = () => {
         <TypeSelect setPageIndex={setPageIndex} setData={setData} data={data} />
         <PaymentSelect setPageIndex={setPageIndex} />
         <Payment data={data} setPageIndex={setPageIndex} setData={setData} />
-        <Capture pageIndex={pageIndex} setData={setData} setPageIndex={setPageIndex} />
+        <Capture data={data} pageIndex={pageIndex} setData={setData} setPageIndex={setPageIndex} />
+        <CaptureSelect
+          data={data}
+          setPageIndex={setPageIndex}
+          setData={setData}
+          pageIndex={pageIndex}
+        />
+        <BackSelect setPageIndex={setPageIndex} />
+        <Download />
       </PageContainer>
     </Container>
   );

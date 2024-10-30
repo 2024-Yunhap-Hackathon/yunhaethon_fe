@@ -11,7 +11,7 @@ export const Splash = ({ setOpen, open }: IProp) => {
 
   useEffect(() => {
     if (open) setOpening(true);
-    else setTimeout(() => setOpening(false), 150);
+    else setTimeout(() => setOpening(false), 145);
   }, [open]);
 
   return opening ? (
