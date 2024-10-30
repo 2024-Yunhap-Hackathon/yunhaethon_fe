@@ -3,33 +3,51 @@ import styled from "styled-components";
 import KarinaImg from "@/assets/Karina.png"
 import fourCutImg from "@/assets/4cutImg.png"
 import HeartIcon from "@/assets/HeartIcon.tsx";
+import { useState } from "react";
+
+const posts = [
+  { id: 1, userName: "aespa_official", image: fourCutImg, date: "2024.07.26 99:99", title: "나 에스판데 우리 다같이 사진찍었다", likeCount: "523K" },
+  { id: 2, userName: "aespa_official", image: fourCutImg, date: "2024.07.26 99:99", title: "나 에스판데 우리 다같이 사진찍었다", likeCount: "523K" },
+];
 
 export const Main = () => {
+  const [isHeartClick, setIsHeartClick] = useState<{ [key: number]: boolean }>({});
+
+  const toggleHeartClick = (id: number) => {
+    setIsHeartClick((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id]
+    }));
+  };
+
   return (
     <Layout>
       <Contents>
-        <PostLayout>
-          <PostHeader>
-            <UserInfo>
-              <UserImg src={KarinaImg} />
-              <UserName>aespa_official</UserName>
-            </UserInfo>
-          </PostHeader>
-          <ImageLayout>
-            <FourCutImg src={fourCutImg} />
-          </ImageLayout>
-          <PostFooter>
-            <LikeLayout>
-              <HeartIcon />
-              <LikeCount>523K</LikeCount>
-            </LikeLayout>
-            <PostDetails>
-              <Title>나 에스판데 우리 다같이 사진찍었다</Title>
-              <Date>2024.07.26 99:99</Date>
-            </PostDetails>
-          </PostFooter>
-        </PostLayout>
-
+        {posts.map((post) => (
+          <PostLayout key={post.id}>
+            <PostHeader>
+              <UserInfo>
+                <UserImg src={KarinaImg} />
+                <UserName>{post.userName}</UserName>
+              </UserInfo>
+            </PostHeader>
+            <ImageLayout>
+              <FourCutImg src={post.image} />
+            </ImageLayout>
+            <PostFooter>
+              <LikeInfos>
+                <HeartLayout onClick={() => toggleHeartClick(post.id)}>
+                  <HeartIcon mode={isHeartClick[post.id]} />
+                </HeartLayout>
+                <LikeCount>{post.likeCount}</LikeCount>
+              </LikeInfos>
+              <PostDetails>
+                <Title>{post.title}</Title>
+                <Date>{post.date}</Date>
+              </PostDetails>
+            </PostFooter>
+          </PostLayout>
+        ))}
       </Contents>
       <Footer />
     </Layout>
@@ -38,12 +56,11 @@ export const Main = () => {
 
 const Layout = styled.div`
   width: 100%;
-  height: 100vh;
   background-color: #F0F1FA;
 `
 const Contents = styled.div`
   width: 100%;
-  padding: 60px 16px 20px 16px;
+  padding: 60px 16px 100px 16px;
 `
 const PostLayout = styled.div`
   display: flex;
@@ -87,10 +104,15 @@ const PostFooter = styled.div`
   align-items: flex-start;
   gap: 8px;
 `
-const LikeLayout = styled.div`
+const LikeInfos = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+`
+const HeartLayout = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 const LikeCount = styled.p`
   color: #FE4B4B;
