@@ -3,3 +3,4 @@ export * from "./Kiosk";
 export * from "./Mobile/StartPage"
 export * from "./Mobile/Login"
 export * from "./Mobile/InputInfo"
+export * from "./Mobile/Main"
