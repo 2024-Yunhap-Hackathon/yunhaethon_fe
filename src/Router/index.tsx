@@ -11,7 +11,7 @@ export const Router = () => {
         <Route path="/mobile" Component={_.StartPage} />
         <Route path="/mobile/login" Component={_.Login} />
         <Route path="/mobile/inputInfo" Component={_.InputInfo} />
-        <Route path="/mobile/main" Component={_.Main} />
+        <Route path="/mobile/home" Component={_.Main} />
       </Routes>
     </BrowserRouter>
   );
