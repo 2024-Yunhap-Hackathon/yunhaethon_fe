@@ -1,31 +1,35 @@
+import { usePageIndex, useShotData } from "@/hooks";
 import styled from "styled-components";
-import { IKioskScreenProp } from ".";
 import { Icon } from "@iconify/react";
 import { theme } from "@/constants";
 import { useEffect } from "react";
 
-export const CaptureSelect = ({ data, setData, pageIndex, setPageIndex }: IKioskScreenProp) => {
-  const checkedLength = data?.images.filter((i) => i.selected).length;
+export const CaptureSelect = () => {
+  const { images, type, set } = useShotData();
+  const { next, getNameByIndex } = usePageIndex();
+
+  const checkedLength = images.filter((i) => i.selected).length;
 
   useEffect(() => {
-    if (checkedLength == data?.type.split("_")[2] && pageIndex === 5) {
-      setPageIndex((prev) => prev + 1);
-    }
-  }, [data]);
+    if (
+      type &&
+      checkedLength === Number((type as string).split("_")[2]) &&
+      getNameByIndex() === "사진 선택"
+    )
+      next();
+  }, [images]);
 
   return (
     <Container>
       <SelectionContainer>
-        {data?.images.map((i) => (
+        {images.map((i) => (
           <SelectionItemContainer
             onClick={() =>
-              setData &&
-              setData((prev) => ({
-                ...prev,
-                images: prev.images.map((j) =>
-                  j.name === i.name ? { selected: !j.selected, name: j.name } : j
+              set({
+                images: images.map((j) =>
+                  j.data === i.data ? { selected: !j.selected, data: j.data } : j
                 ),
-              }))
+              })
             }
           >
             {i.selected && (
@@ -33,14 +37,14 @@ export const CaptureSelect = ({ data, setData, pageIndex, setPageIndex }: IKiosk
                 <Icon icon="mdi:check" color="white" width={40} />
               </Checked>
             )}
-            <Selection src={i.name} />
+            <Selection src={i.data} />
           </SelectionItemContainer>
         ))}
       </SelectionContainer>
       <CounterContainer>
         <CounterCurrent>{checkedLength}</CounterCurrent>
         <CounterBar />
-        <CounterMax>{data?.type.split("_")[2]}</CounterMax>
+        <CounterMax>{type?.split("_")[2]}</CounterMax>
       </CounterContainer>
     </Container>
   );

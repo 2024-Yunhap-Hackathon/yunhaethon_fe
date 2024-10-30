@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance } from "axios";
 
 export const customAxios: AxiosInstance = axios.create({
-  baseURL: import.meta.env.REACT_APP_BASE_URL,
+  baseURL: import.meta.env.VITE_BASE_URL,
 });
 
 customAxios.interceptors.request.use((data) => {
@@ -53,6 +53,6 @@ export const useAxiosInterceptor = () => {
         }
       }
       return Promise.reject(error);
-    },
+    }
   );
 };

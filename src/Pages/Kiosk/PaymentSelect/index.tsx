@@ -1,14 +1,15 @@
 import styled from "styled-components";
-import { IKioskScreenProp } from "..";
 import { useState } from "react";
 import { Payment } from "./Payment";
+import { usePageIndex } from "@/hooks";
 
-export const PaymentSelect = ({ setPageIndex }: IKioskScreenProp) => {
+export const PaymentSelect = () => {
+  const { next } = usePageIndex();
   const [selected, setSelected] = useState<string | undefined>(undefined);
 
   const handleClick = (id: string) => {
     setSelected(id);
-    setTimeout(() => setPageIndex((prev) => prev + 1), 300);
+    setTimeout(next, 300);
   };
 
   return (

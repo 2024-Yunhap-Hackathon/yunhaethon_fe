@@ -37,7 +37,7 @@ export const Detail = () => {
         </PostHeader>
         <ImageLayout>
           <FourCutImg src={post.image} />
-          <EditButton onClick={() => navigate("/mobile/replace")}>사진 재배치</EditButton>
+          <EditButton onClick={() => navigate("/replace")}>사진 재배치</EditButton>
         </ImageLayout>
         <PostFooter>
           <LikeInfos>

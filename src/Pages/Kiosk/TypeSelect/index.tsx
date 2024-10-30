@@ -1,14 +1,15 @@
-import { IKioskScreenProp } from "..";
+import { usePageIndex, useShotData } from "@/hooks";
 import styled from "styled-components";
 import * as i from "@/assets/";
 import { Cut } from "./Cut";
 
-export const TypeSelect = ({ data, setData, setPageIndex }: IKioskScreenProp) => {
+export const TypeSelect = () => {
+  const { set, type } = useShotData();
+  const { next } = usePageIndex();
+
   const handleClick = (type: string) => {
-    if (setData) {
-      setData((prev) => ({ ...prev, type }));
-      setTimeout(() => setPageIndex((prev) => prev + 1), 300);
-    }
+    set({ type });
+    setTimeout(next, 300);
   };
 
   return (
@@ -18,13 +19,13 @@ export const TypeSelect = ({ data, setData, setPageIndex }: IKioskScreenProp) =>
           title="일반 세로 4컷"
           image={i.NormalFour}
           id="NRM_VER_4"
-          selected={data?.type}
-          onClick={(id) => handleClick(id)}
+          selected={type}
+          onClick={handleClick}
         />
         <Cut
           title="일반 세로 2컷"
           image={i.NormalTwo}
-          selected={data?.type}
+          selected={type}
           id="NRM_VER_2"
           onClick={handleClick}
         />
@@ -32,7 +33,7 @@ export const TypeSelect = ({ data, setData, setPageIndex }: IKioskScreenProp) =>
           title="더블 세로 4컷"
           image={i.DoubleFour}
           id="DBL_VER_4"
-          selected={data?.type}
+          selected={type}
           onClick={handleClick}
         />
       </CutContainer>

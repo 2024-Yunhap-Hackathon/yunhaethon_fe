@@ -1,18 +1,14 @@
 import { theme } from "@/constants";
 import styled from "styled-components";
-import { IKioskScreenProp } from "..";
 import { Icon } from "@iconify/react";
 import { Modal } from "./Modal";
 import { useState } from "react";
+import { usePageIndex } from "@/hooks";
 
-export const Payment = ({ data, setData, setPageIndex }: IKioskScreenProp) => {
+export const Payment = () => {
   const [status, setStatus] = useState<string | undefined>(undefined);
-
-  const handleClick = (value: number) => {
-    if (setData && value > 0 && value < 11) {
-      setData((prev) => ({ ...prev, printCount: value }));
-    }
-  };
+  const [count, setCount] = useState(1);
+  const { next } = usePageIndex();
 
   const handlePayClick = () => {
     setStatus("대기중");
@@ -22,7 +18,7 @@ export const Payment = ({ data, setData, setPageIndex }: IKioskScreenProp) => {
         setStatus("승인중");
         setTimeout(() => {
           setStatus(undefined);
-          setPageIndex((prev) => prev + 1);
+          next();
         }, 500);
       }, 200);
     }, 1000);
@@ -35,25 +31,25 @@ export const Payment = ({ data, setData, setPageIndex }: IKioskScreenProp) => {
         <InfoBarContainer>
           <InfoTitle>출력 횟수</InfoTitle>
           <PrintCountContainer>
-            <PrintCount>{data?.printCount}</PrintCount>
+            <PrintCount>{count}</PrintCount>
             <PrintControllerContainer>
               <Icon
                 icon="ep:arrow-up-bold"
                 width={25}
-                onClick={() => handleClick(data ? data.printCount + 1 : 1)}
+                onClick={() => setCount((prev) => prev + 1)}
               />
               <Icon
                 icon="ep:arrow-up-bold"
                 width={25}
                 rotate={90}
-                onClick={() => handleClick(data ? data.printCount - 1 : 1)}
+                onClick={() => count > 1 && setCount((prev) => prev - 1)}
               />
             </PrintControllerContainer>
           </PrintCountContainer>
         </InfoBarContainer>
         <InfoBarContainer>
           <InfoTitle>총 결제금액</InfoTitle>
-          <InfoResult>{data && data?.printCount * 3000}\</InfoResult>
+          <InfoResult>{count * 3000}\</InfoResult>
         </InfoBarContainer>
       </InfoContainer>
       <PayButton onClick={handlePayClick}>결제하기</PayButton>

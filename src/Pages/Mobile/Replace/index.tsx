@@ -16,7 +16,7 @@ export const Replace = () => {
       </PrevButtonContainer>
       <ImageLayout>
         <FourCutImg src={fourCutImg} />
-        <EditButton onClick={() => navigate("/mobile/detail")}>수정 완료</EditButton>
+        <EditButton onClick={() => navigate("/detail")}>수정 완료</EditButton>
       </ImageLayout>
       <ChangeItemContainer>
         {Object.values(images).map((i) => (

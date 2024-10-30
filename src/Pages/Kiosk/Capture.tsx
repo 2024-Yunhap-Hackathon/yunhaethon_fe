@@ -1,18 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { IKioskScreenProp } from ".";
 import { theme } from "@/constants";
+import { usePageIndex, useShotData } from "@/hooks";
 
 let timer: NodeJS.Timeout | undefined = undefined;
 const CONSTRAINTS = { video: true };
+const COUNT = 3;
 
-export const Capture = ({ data, setData, pageIndex, setPageIndex }: IKioskScreenProp) => {
+export const Capture = () => {
+  const { images, set, pushImage: push } = useShotData();
+  const [count, setCount] = useState(COUNT);
   const [localStream, setLocalStream] = useState<MediaStream | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [count, setCount] = useState({
-    start: 5,
-    wait: 3,
-  });
+  const { next, getNameByIndex, index } = usePageIndex();
 
   const startVideo = async () => {
     const stream = await navigator.mediaDevices.getUserMedia(CONSTRAINTS);
@@ -23,25 +23,11 @@ export const Capture = ({ data, setData, pageIndex, setPageIndex }: IKioskScreen
     }
   };
 
-  const startCaptureWait = () => {
+  const pushImage = () => {
     timer = setInterval(() => {
       setCount((prev) => {
-        if (prev.start >= 1) {
-          return { ...prev, start: prev.start - 1 };
-        } else {
-          clearInterval(timer);
-          startCapture();
-          return { ...prev, start: prev.start };
-        }
-      });
-    }, 1000);
-  };
-
-  const startCapture = () => {
-    timer = setInterval(() => {
-      setCount((prev) => {
-        if (prev.wait >= 1) {
-          return { ...prev, wait: prev.wait - 1 };
+        if (prev > 1) {
+          return prev - 1;
         } else {
           videoRef?.current?.pause();
           const canvas = document.createElement("canvas");
@@ -50,62 +36,50 @@ export const Capture = ({ data, setData, pageIndex, setPageIndex }: IKioskScreen
           canvas.width = w;
           canvas.height = h;
           const ctx = canvas.getContext("2d");
-          if (ctx && videoRef.current && setData) {
+          if (ctx && videoRef.current) {
             ctx.drawImage(videoRef.current, 0, 0, w, h);
-
-            setData((prev) => ({
-              ...prev,
-              images: [...prev.images, { selected: false, name: canvas.toDataURL("image/png") }],
-            }));
+            push(canvas);
           }
           setTimeout(() => {
             videoRef?.current?.play();
           }, 1000);
 
-          return { ...prev, wait: 3 };
+          return COUNT;
         }
       });
     }, 1000);
   };
 
   useEffect(() => {
-    if (pageIndex === 4) {
-      startVideo().then(() => startCaptureWait());
+    if (getNameByIndex() === "촬영") {
+      startVideo().then(pushImage);
     } else if (videoRef.current?.srcObject) {
       if (localStream && videoRef?.current) {
-        setCount((prev) => ({ ...prev, start: 5 }));
+        setCount(COUNT);
         videoRef.current.pause();
         videoRef.current.srcObject = null;
         localStream.getTracks().forEach((i) => i.stop());
       }
     }
-  }, [pageIndex]);
+  }, [index]);
 
   useEffect(() => {
-    if (data?.images.length === 8 && pageIndex === 4) {
+    if (images.length === 8 && getNameByIndex() === "촬영") {
       clearTimeout(timer);
-      setPageIndex((prev) => prev + 1);
+      next();
     }
-  }, [data]);
+  }, [images]);
+
   return (
     <Container>
       <CameraContainer>
-        {!!count.start && (
-          <StartContainer>
-            <StartTimer>
-              <StartTimerStrong>{count.start}</StartTimerStrong>초 후 촬영이 시작됩니다!
-            </StartTimer>
-          </StartContainer>
-        )}
-        {!count.start && (
-          <CaptureContainer>
-            <CaptureTimer>{count.wait}</CaptureTimer>
-          </CaptureContainer>
-        )}
+        <CaptureContainer>
+          <CaptureTimer>{count}</CaptureTimer>
+        </CaptureContainer>
         <Camera autoPlay ref={videoRef} />
       </CameraContainer>
       <CounterContainer>
-        <CounterCurrent>{data?.images.length}</CounterCurrent>
+        <CounterCurrent>{images.length}</CounterCurrent>
         <CounterBar />
         <CounterMax>8</CounterMax>
       </CounterContainer>
@@ -137,27 +111,6 @@ const CameraContainer = styled.div`
   width: 1280px;
   height: 750px;
   position: relative;
-`;
-
-const StartContainer = styled.div`
-  width: 1280px;
-  height: 750px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #000000aa;
-  position: absolute;
-  z-index: 20;
-`;
-
-const StartTimer = styled.span`
-  font-family: GSansMedium;
-  font-size: 50px;
-  color: white;
-`;
-
-const StartTimerStrong = styled(StartTimer)`
-  font-family: GSansBold;
 `;
 
 const CaptureContainer = styled.div`

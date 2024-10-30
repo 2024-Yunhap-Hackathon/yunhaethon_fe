@@ -1,73 +1,28 @@
 import styled from "styled-components";
 import { TGB, TPB, Black } from "@/assets";
-import { IKioskScreenProp } from ".";
+import { usePageIndex } from "@/hooks";
 
-export const BackSelect = ({ setPageIndex }: IKioskScreenProp) => {
+export const BackSelect = () => {
+  const { next } = usePageIndex();
+
   return (
     <Container>
       <Title>소유중인 배경</Title>
       <BackContainer>
-        <BackItemContainer
-          onClick={() => {
-            setPageIndex((prev) => prev + 1);
-          }}
-        >
+        <BackItemContainer onClick={next}>
           <img src={TGB} />
           <BackName>트로피컬 그린 & 블루</BackName>
         </BackItemContainer>
-        <BackItemContainer
-          onClick={() => {
-            setPageIndex((prev) => prev + 1);
-          }}
-        >
+        <BackItemContainer onClick={next}>
           <img src={TGB} />
           <BackName>트로피컬 그린 & 블루</BackName>
         </BackItemContainer>
-        <BackItemContainer
-          onClick={() => {
-            setPageIndex((prev) => prev + 1);
-          }}
-        >
+        <BackItemContainer onClick={next}>
           <img src={TGB} />
           <BackName>트로피컬 그린 & 블루</BackName>
         </BackItemContainer>
-        <BackItemContainer
-          onClick={() => {
-            setPageIndex((prev) => prev + 1);
-          }}
-        >
-          <img src={TGB} />
-          <BackName>트로피컬 그린 & 블루</BackName>
-        </BackItemContainer>
-        <BackItemContainer
-          onClick={() => {
-            setPageIndex((prev) => prev + 1);
-          }}
-        >
-          <img src={TGB} />
-          <BackName>트로피컬 그린 & 블루</BackName>
-        </BackItemContainer>
-        <BackItemContainer
-          onClick={() => {
-            setPageIndex((prev) => prev + 1);
-          }}
-        >
-          <img src={TGB} />
-          <BackName>트로피컬 그린 & 블루</BackName>
-        </BackItemContainer>
-        <BackItemContainer
-          onClick={() => {
-            setPageIndex((prev) => prev + 1);
-          }}
-        >
-          <img src={TPB} />
-          <BackName>트로피컬 핑크 & 바이올렛</BackName>
-        </BackItemContainer>
-        <BackItemContainer
-          onClick={() => {
-            setPageIndex((prev) => prev + 1);
-          }}
-        >
+
+        <BackItemContainer onClick={next}>
           <img src={Black} />
           <BackName>검정 단색</BackName>
         </BackItemContainer>

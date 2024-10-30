@@ -1,28 +1,23 @@
-import { useEffect, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
+import { useState } from "react";
 
-interface IProp {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
+export const Splash = () => {
+  const [open, setOpen] = useState(1); // 1 - 열림, 0 - 닫히는 중, -1 - 닫힘
 
-export const Splash = ({ setOpen, open }: IProp) => {
-  const [opening, setOpening] = useState(true);
+  const handleClose = () => {
+    setOpen(0);
+    setTimeout(() => setOpen(-1), 150);
+  };
 
-  useEffect(() => {
-    if (open) setOpening(true);
-    else setTimeout(() => setOpening(false), 145);
-  }, [open]);
-
-  return opening ? (
-    <div style={{ position: "absolute", zIndex: 50 }}>
-      <Container onClick={() => setOpen(false)} open={open}>
+  return open === 1 || open === 0 ? (
+    <Wrapper open={open} onClick={handleClose}>
+      <Container>
         <PhotoLeft src="L.png" />
         <Logo src="Logo.png" />
         <PressToStart>화면을 터치해주세요</PressToStart>
         <PhotoRight src="R.png" />
       </Container>
-    </div>
+    </Wrapper>
   ) : null;
 };
 
@@ -47,7 +42,17 @@ const close = keyframes`
   }
 `;
 
-const Container = styled.div<{ open: boolean }>`
+const Wrapper = styled.div<{ open: number }>`
+  position: absolute;
+  z-index: 50;
+  ${({ open }) =>
+    open === 0 &&
+    css`
+      animation: ${close} 150ms ease;
+    `}
+`;
+
+const Container = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -56,11 +61,6 @@ const Container = styled.div<{ open: boolean }>`
   position: relative;
   justify-content: center;
   overflow: hidden;
-  ${({ open }) =>
-    !open &&
-    css`
-      animation: ${close} 150ms ease;
-    `}
 `;
 
 const PhotoLayout = styled.img`

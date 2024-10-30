@@ -4,7 +4,7 @@ interface IProp {
   title: string;
   id: string;
   image: string;
-  selected?: string;
+  selected: string | null;
   onClick: (id: string) => void;
 }
 
@@ -23,6 +23,8 @@ const Container = styled.div<{ selected: boolean }>`
   gap: 24px;
   align-items: center;
   transition: 0.3s all;
+  &:focus {
+  }
   transform: scale(${({ selected }) => (selected ? "0.9" : "1")});
 `;
 

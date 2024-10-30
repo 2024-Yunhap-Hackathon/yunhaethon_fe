@@ -1,11 +1,19 @@
 import styled from "styled-components";
-import { IKioskScreenProp } from "..";
+import { usePageIndex } from "@/hooks";
+import { useState } from "react";
 
-export const CheckId = ({ setPageIndex }: IKioskScreenProp) => {
+export const CheckId = () => {
+  const { next } = usePageIndex();
+  const [data, setData] = useState("");
+
   return (
     <Container>
-      <Input placeholder="아이디 입력" />
-      <Button onClick={() => setPageIndex((prev) => prev + 1)}>완료</Button>
+      <Input
+        placeholder="아이디 입력"
+        value={data}
+        onChange={({ target }) => setData(target.value)}
+      />
+      <Button onClick={next}>완료</Button>
     </Container>
   );
 };
