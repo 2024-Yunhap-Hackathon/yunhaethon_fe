@@ -2,7 +2,7 @@ import Footer from "@/Components/mobile/footer";
 import { theme } from "@/constants";
 import { useState } from "react";
 import styled from "styled-components";
-export * from "./Write";
+// export * from "./Write";
 
 const loading = false;
 
