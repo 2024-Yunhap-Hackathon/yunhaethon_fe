@@ -8,6 +8,7 @@ import { Payment } from "./Payment";
 import { Capture } from "./Capture";
 import { CaptureSelect } from "./CaptureSelect";
 import { BackSelect } from "./BackSelect";
+import { Download } from "./Download";
 
 interface IData {
   images: Array<{
@@ -53,7 +54,8 @@ export const Kiosk = () => {
           setData={setData}
           pageIndex={pageIndex}
         />
-        <BackSelect />
+        <BackSelect setPageIndex={setPageIndex} />
+        <Download />
       </PageContainer>
     </Container>
   );
