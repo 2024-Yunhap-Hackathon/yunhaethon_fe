@@ -17,6 +17,7 @@ export const Router = () => {
         <Route path="/mobile/notifications" Component={_.Notice} />
         <Route path="/mobile/code" Component={_.Code} />
         <Route path="/mobile/write" Component={_.Write} />
+        <Route path="/mobile/album" Component={_.Album} />
       </Routes>
     </BrowserRouter>
   );
