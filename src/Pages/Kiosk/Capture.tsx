@@ -1,16 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { IKioskScreenProp } from ".";
+import { theme } from "@/constants";
 
 let timer: NodeJS.Timeout | undefined = undefined;
 const CONSTRAINTS = { video: true };
 
-export const Capture = ({ setData, pageIndex }: IKioskScreenProp) => {
+export const Capture = ({ data, setData, pageIndex, setPageIndex }: IKioskScreenProp) => {
   const [localStream, setLocalStream] = useState<MediaStream | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [count, setCount] = useState({
     start: 5,
-    wait: 15,
+    wait: 3,
   });
 
   const startVideo = async () => {
@@ -44,12 +45,24 @@ export const Capture = ({ setData, pageIndex }: IKioskScreenProp) => {
         } else {
           videoRef?.current?.pause();
           const canvas = document.createElement("canvas");
-          canvas.width = videoRef.current?.videoWidth as number;
-          canvas.height = videoRef.current?.videoHeight as number;
-          canvas.setTimeout(() => {
+          const w = videoRef.current?.videoWidth as number;
+          const h = videoRef.current?.videoHeight as number;
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext("2d");
+          if (ctx && videoRef.current && setData) {
+            ctx.drawImage(videoRef.current, 0, 0, w, h);
+
+            setData((prev) => ({
+              ...prev,
+              images: [...prev.images, { selected: false, name: canvas.toDataURL("image/png") }],
+            }));
+          }
+          setTimeout(() => {
             videoRef?.current?.play();
-          }, 1500);
-          return { ...prev, wait: 15 };
+          }, 1000);
+
+          return { ...prev, wait: 3 };
         }
       });
     }, 1000);
@@ -68,6 +81,12 @@ export const Capture = ({ setData, pageIndex }: IKioskScreenProp) => {
     }
   }, [pageIndex]);
 
+  useEffect(() => {
+    if (data?.images.length === 8 && pageIndex === 3) {
+      clearTimeout(timer);
+      setPageIndex((prev) => prev + 1);
+    }
+  }, [data]);
   return (
     <Container>
       <CameraContainer>
@@ -85,6 +104,11 @@ export const Capture = ({ setData, pageIndex }: IKioskScreenProp) => {
         )}
         <Camera autoPlay ref={videoRef} />
       </CameraContainer>
+      <CounterContainer>
+        <CounterCurrent>{data?.images.length}</CounterCurrent>
+        <CounterBar />
+        <CounterMax>8</CounterMax>
+      </CounterContainer>
     </Container>
   );
 };
@@ -154,4 +178,31 @@ const CaptureTimer = styled.span`
   font-family: GSansBold;
   font-size: 30px;
   color: white;
+`;
+
+const CounterContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  bottom: 20px;
+`;
+
+const CounterLayout = styled.span`
+  font-family; GSansLight;
+  font-size: 50px;
+`;
+
+const CounterMax = styled(CounterLayout)`
+  color: ${theme.gray[800]};
+`;
+
+const CounterCurrent = styled(CounterLayout)`
+  color: ${theme.blue[500]};
+`;
+
+const CounterBar = styled.div`
+  width: 2px;
+  height: 20px;
+  background: ${theme.gray[300]};
 `;
