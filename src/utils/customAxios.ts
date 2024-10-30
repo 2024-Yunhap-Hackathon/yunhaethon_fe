@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance } from "axios";
 
 export const customAxios: AxiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: import.meta.env.REACT_APP_BASE_URL,
 });
 
 customAxios.interceptors.request.use((data) => {
@@ -14,7 +14,7 @@ customAxios.interceptors.request.use((data) => {
 });
 
 export const postRefreshToken = async () => {
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const BASE_URL = import.meta.env.REACT_APP_BASE_URL;
   const refreshToken = localStorage.getItem("refreshToken");
   const response = await axios.post(`${BASE_URL}/auth/refresh`, {
     refreshToken,

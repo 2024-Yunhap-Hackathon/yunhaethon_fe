@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import GoogleLogo from "@/assets/GoogleLogo.svg"
+import {customAxios} from "@/utils/customAxios.ts";
 
 export const Login = () => {
+  const handleLoginClick = async () => {
+    const get_url = await customAxios.get("/auth/google")
+    console.log(get_url)
+  }
   return (
     <Layout>
       <ContentLayout>
@@ -9,7 +14,7 @@ export const Login = () => {
         <Comment>네컷내컷 서비스를 사용하기 위해</Comment>
         <Comment><Bold>로그인</Bold>을 해주세요!</Comment>
       </TextLayout>
-      <GoogleLayout>
+      <GoogleLayout onClick={handleLoginClick}>
         <GoogleImg src={GoogleLogo} />
         <LoginText>구글 로그인</LoginText>
       </GoogleLayout>

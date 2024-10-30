@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import * as _ from "../Pages";
-import {useAuthService} from "@/utils/auth/useAuthService.ts";
+// import {useAuthService} from "@/utils/auth/useAuthService.ts";
 
 export const Router = () => {
-  useAuthService()
+  // useAuthService()
   return (
     <BrowserRouter>
       <Routes>
