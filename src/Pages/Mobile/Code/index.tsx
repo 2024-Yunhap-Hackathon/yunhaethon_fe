@@ -40,7 +40,10 @@ export const Code = () => {
           onChange={handleChange}
         />
       </TextContainer>
-      <UsageText>코드 입력 시 자동으로 사진이 다운로드 됩니다.</UsageText>
+      <UsageText>
+        코드 입력 시 자동으로 사진이
+        <br /> 다운로드 됩니다.
+      </UsageText>
       <Footer />
     </Container>
   );
@@ -49,6 +52,7 @@ export const Code = () => {
 const UsageText = styled.span`
   font-family: Pretendard;
   font-size: 20px;
+  text-align: center;
   font-weight: 300;
   color: ${theme.gray[400]};
 `;
@@ -75,8 +79,8 @@ const TextContainer = styled.label`
 `;
 
 const TextItemContainer = styled.div`
-  width: 36px;
-  height: 36px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,11 +91,11 @@ const Empty = styled.div`
   width: 10px;
   height: 10px;
   border-radius: 50px;
-  background: ${theme.gray[300]};
+  background: ${theme.gray[100]};
 `;
 
 const Text = styled.div`
   font-family: Pretendard;
-  font-weight: light;
+  font-weight: 200;
   font-size: 32px;
 `;
