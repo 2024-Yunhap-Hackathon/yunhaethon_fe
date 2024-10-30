@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react";
 import styled from "styled-components";
 
 const pages = [
+  "계정 ID 입력",
   "사진 형태 선택",
   "결제 방식 선택",
   "결제",

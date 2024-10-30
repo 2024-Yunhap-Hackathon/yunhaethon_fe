@@ -54,6 +54,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  position: relative;
 `;
 
 const CutContainer = styled.div`

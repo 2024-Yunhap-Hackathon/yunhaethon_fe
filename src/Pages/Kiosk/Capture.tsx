@@ -69,7 +69,7 @@ export const Capture = ({ data, setData, pageIndex, setPageIndex }: IKioskScreen
   };
 
   useEffect(() => {
-    if (pageIndex === 3) {
+    if (pageIndex === 4) {
       startVideo().then(() => startCaptureWait());
     } else if (videoRef.current?.srcObject) {
       if (localStream && videoRef?.current) {
@@ -82,7 +82,7 @@ export const Capture = ({ data, setData, pageIndex, setPageIndex }: IKioskScreen
   }, [pageIndex]);
 
   useEffect(() => {
-    if (data?.images.length === 8 && pageIndex === 3) {
+    if (data?.images.length === 8 && pageIndex === 4) {
       clearTimeout(timer);
       setPageIndex((prev) => prev + 1);
     }

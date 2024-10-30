@@ -8,7 +8,7 @@ export const CaptureSelect = ({ data, setData, pageIndex, setPageIndex }: IKiosk
   const checkedLength = data?.images.filter((i) => i.selected).length;
 
   useEffect(() => {
-    if (checkedLength == data?.type.split("_")[2] && pageIndex === 4) {
+    if (checkedLength == data?.type.split("_")[2] && pageIndex === 5) {
       setPageIndex((prev) => prev + 1);
     }
   }, [data]);

@@ -9,6 +9,7 @@ import { Capture } from "./Capture";
 import { CaptureSelect } from "./CaptureSelect";
 import { BackSelect } from "./BackSelect";
 import { Download } from "./Download";
+import { CheckId } from "./CheckId";
 
 interface IData {
   images: Array<{
@@ -44,6 +45,7 @@ export const Kiosk = () => {
       <Splash setOpen={setOpen} open={open} />
       <Header pageIndex={pageIndex} setPageIndex={setPageIndex} />
       <PageContainer pageindex={pageIndex}>
+        <CheckId setPageIndex={setPageIndex} />
         <TypeSelect setPageIndex={setPageIndex} setData={setData} data={data} />
         <PaymentSelect setPageIndex={setPageIndex} />
         <Payment data={data} setPageIndex={setPageIndex} setData={setData} />

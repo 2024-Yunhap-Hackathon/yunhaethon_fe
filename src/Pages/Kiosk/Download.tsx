@@ -4,14 +4,11 @@ export const Download = () => {
   return (
     <Container>
       <Code>G1J8N</Code>
-      <Input placeholder="아이디 입력" />
       <UsageContainer>
         <UsageText>
           화면에 뜨는 코드를 <UsageBold>네컷내컷 모바일</UsageBold>에서 사용해주세요!
         </UsageText>
-        <UsageText>
-          또는 아이디를 입력하여 <UsageBold>알림</UsageBold>으로 받으실 수 있습니다
-        </UsageText>
+        <UsageText>(처음 계정 ID를 입력하신 분의 계정으로도 이미지가 전송되었습니다!)</UsageText>
       </UsageContainer>
     </Container>
   );
@@ -32,16 +29,6 @@ const Container = styled.div`
 const Code = styled.span`
   font-family: GSansBold;
   font-size: 48px;
-`;
-
-const Input = styled.input`
-  font-family: GSansMedium;
-  font-size: 30px;
-  width: 70%;
-  padding: 30px;
-  background: white;
-  border-radius: 20px;
-  border: 0;
 `;
 
 const UsageContainer = styled.div`
