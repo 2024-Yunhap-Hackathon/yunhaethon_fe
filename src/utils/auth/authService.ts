@@ -1,15 +1,6 @@
 import { customAxios } from "../customAxios";
 
-// export const fetchUserData = async () => {
-//   try {
-//     const { data } = await customAxios.get("/user");
-//     return data;
-//   } catch (error) {
-//     return error;
-//   }
-// };
 
-// 사용자 정보 받아오기
 
 export const authorizeAccess = async (googleCode: string) => {
   try {
@@ -28,6 +19,7 @@ export const authorizeAccess = async (googleCode: string) => {
     if (newAccessToken && refresh_token) {
       localStorage.setItem("accessToken", newAccessToken);
       localStorage.setItem("refreshToken", refresh_token);
+      window.location.href = "/mobile/inputInfo"
     }
 
     return true;

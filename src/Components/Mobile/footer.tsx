@@ -21,11 +21,11 @@ const Footer = () => {
   };
 
   const navItems: NavItem[] = [
-    { icon: HomeIcon, label: "홈", path: "/Mobile/home" },
-    { icon: CodeIcon, label: "코드 입력", path: "/Mobile/code" },
-    { icon: StoreIcon, label: "스토어", path: "/Mobile/store" },
-    { icon: AlarmIcon, label: "알림", path: "/Mobile/notifications" },
-    { icon: ProfileIcon, label: "프로필", path: "/Mobile/profile" },
+    { icon: HomeIcon, label: "홈", path: "/mobile/home" },
+    { icon: CodeIcon, label: "코드 입력", path: "/mobile/code" },
+    { icon: StoreIcon, label: "스토어", path: "/mobile/store" },
+    { icon: AlarmIcon, label: "알림", path: "/mobile/notifications" },
+    { icon: ProfileIcon, label: "프로필", path: "/mobile/profile" },
   ];
 
   return (
