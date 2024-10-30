@@ -17,7 +17,7 @@ const Footer = () => {
   const navigate = useNavigate();
 
   const getColor = (path: string) => {
-    return location.pathname === path ? '#394DD1' : '#B2B2B2';
+    return location.pathname === path ? "#394DD1" : "#B2B2B2";
   };
 
   const navItems: NavItem[] = [
@@ -50,8 +50,9 @@ const Layout = styled.div`
   justify-content: center;
   align-items: center;
   background-color: white;
-  position: absolute;
+  position: fixed;
   bottom: 0;
+  left: 0;
 `;
 const ContentsLayout = styled.div`
   display: flex;
