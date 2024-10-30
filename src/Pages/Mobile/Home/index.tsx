@@ -1,4 +1,4 @@
-import Footer from "@/Components/mobile/footer.tsx";
+import Footer from "@/Components/Mobile/footer.tsx";
 import styled from "styled-components";
 import KarinaImg from "@/assets/Karina.png"
 import fourCutImg from "@/assets/4cutImg.png"
@@ -10,7 +10,7 @@ const posts = [
   { id: 2, userName: "aespa_official", image: fourCutImg, date: "2024.07.26 99:99", title: "나 에스판데 우리 다같이 사진찍었다", likeCount: "523K" },
 ];
 
-export const Main = () => {
+export const Home = () => {
   const [isHeartClick, setIsHeartClick] = useState<{ [key: number]: boolean }>({});
 
   const toggleHeartClick = (id: number) => {
@@ -21,6 +21,7 @@ export const Main = () => {
   };
 
   return (
+    <>
     <Layout>
       <Contents>
         {posts.map((post) => (
@@ -49,8 +50,9 @@ export const Main = () => {
           </PostLayout>
         ))}
       </Contents>
-      <Footer />
     </Layout>
+    <Footer />
+    </>
   );
 };
 
@@ -60,7 +62,10 @@ const Layout = styled.div`
 `
 const Contents = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
   padding: 60px 16px 100px 16px;
+  gap: 12px;
 `
 const PostLayout = styled.div`
   display: flex;

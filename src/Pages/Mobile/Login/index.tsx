@@ -4,8 +4,14 @@ import {customAxios} from "@/utils/customAxios.ts";
 
 export const Login = () => {
   const handleLoginClick = async () => {
-    const get_url = await customAxios.get("/auth/google")
-    console.log(get_url)
+    try {
+      const { data } = await customAxios.get("/auth/google")
+      window.location.href = data.url
+    } catch (error) {
+      console.log(error)
+    }
+
+
   }
   return (
     <Layout>

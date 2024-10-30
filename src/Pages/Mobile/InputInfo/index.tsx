@@ -1,8 +1,22 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { customAxios } from "@/utils/customAxios.ts";
 
 export const InputInfo = () => {
   const navigate = useNavigate();
+
+  const [nickname, setNickname] = useState<string>("");
+
+  const handleFinishClick = async () => {
+    try {
+      await customAxios.post("/user/username", { username: nickname });
+      navigate("/mobile/home");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Layout>
       <ContentLayout>
@@ -13,8 +27,8 @@ export const InputInfo = () => {
           </Comment>
         </TextLayout>
         <InputForm>
-          <NicknameInput />
-          <SubmitButton onClick={() => navigate("/main")}>완료하기</SubmitButton>
+          <NicknameInput value={nickname} onChange={(e) => setNickname(e.target.value)} />
+          <SubmitButton onClick={handleFinishClick}>완료하기</SubmitButton>
         </InputForm>
       </ContentLayout>
     </Layout>

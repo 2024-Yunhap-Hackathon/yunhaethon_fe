@@ -1,4 +1,4 @@
-import Footer from "@/Components/mobile/footer";
+import Footer from "@/Components/Mobile/footer";
 import { theme } from "@/constants";
 import { useState } from "react";
 import styled from "styled-components";

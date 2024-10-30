@@ -7,12 +7,13 @@ interface IProp {
   children: string;
   width: string;
   height: string;
+  radius: string;
   onClick: () => void;
 }
 
-export const Button = ({ type, fontType, children, width, height, onClick }: IProp) => {
+export const Button = ({ type, fontType, children, width, height, radius, onClick }: IProp) => {
   return (
-    <Container type={type} width={width} height={height} fontType={fontType} onClick={onClick}>
+    <Container type={type} width={width} height={height} fontType={fontType} onClick={onClick} radius={radius}>
       {children}
     </Container>
   );
@@ -23,9 +24,10 @@ const Container = styled.button<{
   width: string;
   height: string;
   fontType: "small" | "medium" | "large";
+  radius: string;
 }>`
   border: 0;
-  border-radius: 4px;
+  border-radius: ${({ radius }) => radius};
   background: ${({ type }) => (type === "blue" ? theme.blue[500] : theme.gray[50])};
   color: ${({ type }) => (type === "blue" ? "white" : theme.gray[600])};
   width: ${({ width }) => width};

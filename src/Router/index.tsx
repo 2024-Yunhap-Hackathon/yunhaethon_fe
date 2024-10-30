@@ -14,7 +14,7 @@ export const Router = () => {
         <Route path="/" Component={_.StartPage} />
         <Route path="/login" Component={_.Login} />
         <Route path="/inputInfo" Component={_.InputInfo} />
-        <Route path="/home" Component={_.Main} />
+        {/* <Route path="/home" Component={_.Main} /> */}
         <Route path="/films" Component={_.Films} />
         <Route path="/store" Component={_.Buy} />
         <Route path="/notifications" Component={_.Notice} />
