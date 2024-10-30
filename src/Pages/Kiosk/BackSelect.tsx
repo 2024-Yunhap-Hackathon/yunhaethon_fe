@@ -5,8 +5,48 @@ import { IKioskScreenProp } from ".";
 export const BackSelect = ({ setPageIndex }: IKioskScreenProp) => {
   return (
     <Container>
-      <Title>추천 배경</Title>
+      <Title>소유중인 배경</Title>
       <BackContainer>
+        <BackItemContainer
+          onClick={() => {
+            setPageIndex((prev) => prev + 1);
+          }}
+        >
+          <img src={TGB} />
+          <BackName>트로피컬 그린 & 블루</BackName>
+        </BackItemContainer>
+        <BackItemContainer
+          onClick={() => {
+            setPageIndex((prev) => prev + 1);
+          }}
+        >
+          <img src={TGB} />
+          <BackName>트로피컬 그린 & 블루</BackName>
+        </BackItemContainer>
+        <BackItemContainer
+          onClick={() => {
+            setPageIndex((prev) => prev + 1);
+          }}
+        >
+          <img src={TGB} />
+          <BackName>트로피컬 그린 & 블루</BackName>
+        </BackItemContainer>
+        <BackItemContainer
+          onClick={() => {
+            setPageIndex((prev) => prev + 1);
+          }}
+        >
+          <img src={TGB} />
+          <BackName>트로피컬 그린 & 블루</BackName>
+        </BackItemContainer>
+        <BackItemContainer
+          onClick={() => {
+            setPageIndex((prev) => prev + 1);
+          }}
+        >
+          <img src={TGB} />
+          <BackName>트로피컬 그린 & 블루</BackName>
+        </BackItemContainer>
         <BackItemContainer
           onClick={() => {
             setPageIndex((prev) => prev + 1);
@@ -32,7 +72,6 @@ export const BackSelect = ({ setPageIndex }: IKioskScreenProp) => {
           <BackName>검정 단색</BackName>
         </BackItemContainer>
       </BackContainer>
-      <UseQRBack>또는 스토어에서 받은 배경 사용하기</UseQRBack>
     </Container>
   );
 };
@@ -58,6 +97,10 @@ const BackContainer = styled.div`
   display: flex;
   gap: 300px;
   align-items: center;
+  width: 100%;
+  overflow: scroll;
+  height: 400px;
+  padding: 0 45%;
 `;
 
 const BackItemContainer = styled.div`
@@ -73,11 +116,4 @@ const BackName = styled.span`
   bottom: -30px;
   width: max-content;
   align-self: center;
-`;
-
-const UseQRBack = styled.span`
-  position: absolute;
-  font-family: GSansLight;
-  font-size: 24px;
-  bottom: 80px;
 `;

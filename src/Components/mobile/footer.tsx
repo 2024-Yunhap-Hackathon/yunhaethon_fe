@@ -5,6 +5,7 @@ import { CodeIcon } from "@/assets/CodeIcon.tsx";
 import { StoreIcon } from "@/assets/StoreIcon.tsx";
 import { AlarmIcon } from "@/assets/AlarmIcon.tsx";
 import { ProfileIcon } from "@/assets/ProfileIcon.tsx";
+import { theme } from "@/constants";
 
 interface NavItem {
   icon: React.FC<{ fill?: string }>;
@@ -53,6 +54,7 @@ const Layout = styled.div`
   position: fixed;
   bottom: 0;
   left: 0;
+  padding-top: 4px solid ${theme.blue[400]};
 `;
 const ContentsLayout = styled.div`
   display: flex;

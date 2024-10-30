@@ -42,7 +42,8 @@ const Container = styled.div<{ open: boolean }>`
   overflow: hidden;
   flex-direction: column;
   gap: 20px;
-  box-shadow: 10px 22px 51px 0px rgba(0,0,0,0.26);
+  border: 1px solid ${theme.gray[50]};
+  box-shadow: 24px 49px 15px 0px rgba(135, 135, 135, 0.00), 16px 32px 14px 0px rgba(135, 135, 135, 0.01), 9px 18px 12px 0px rgba(135, 135, 135, 0.05), 4px 8px 9px 0px rgba(135, 135, 135, 0.09), 1px 2px 5px 0px rgba(135, 135, 135, 0.10);
 `;
 
 const TitleContainer = styled.div`

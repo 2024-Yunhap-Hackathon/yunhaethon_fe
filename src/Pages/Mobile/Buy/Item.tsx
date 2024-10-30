@@ -31,6 +31,9 @@ const Container = styled.div`
 const Image = styled.img`
   width: 80%;
   align-self: center;
+  box-shadow: 64px 110px 36px 0px rgba(0, 0, 0, 0), 41px 70px 32px 0px rgba(0, 0, 0, 0.01),
+    23px 39px 27px 0px rgba(0, 0, 0, 0.05), 10px 18px 20px 0px rgba(0, 0, 0, 0.08),
+    3px 4px 11px 0px rgba(0, 0, 0, 0.09);
 `;
 
 const Title = styled.span`

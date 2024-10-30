@@ -25,7 +25,7 @@ export const Header = ({ pageIndex, setPageIndex }: IProp) => {
         <>
           <Title
             selected={pages[pageIndex] === item}
-            onClick={() => pageIndex > index && pageIndex !== 3 && setPageIndex(index)}
+            onClick={() => pageIndex > index && pageIndex !== 4 && setPageIndex(index)}
           >
             {item}
           </Title>

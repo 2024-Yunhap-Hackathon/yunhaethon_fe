@@ -120,7 +120,7 @@ const ModalContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: #000000dd;
+  background: #00000055;
   z-index: 40;
   height: 100%;
   width: 100%;
