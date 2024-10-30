@@ -8,3 +8,4 @@ export * from "./Mobile/Films";
 export * from "./Mobile/Buy";
 export * from "./Mobile/Notice";
 export * from "./Mobile/Code";
+export * from "./Mobile/Profile"

@@ -1,7 +1,7 @@
 import { theme } from "@/constants";
 import styled from "styled-components";
 import { Item } from "./Item";
-import Footer from "@/Components/mobile/footer";
+import Footer from "@/Components/Mobile/footer";
 import { useState } from "react";
 import { Button } from "@/Components/Mobile";
 

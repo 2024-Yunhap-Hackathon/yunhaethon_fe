@@ -1,4 +1,4 @@
-import Footer from "@/Components/mobile/footer.tsx";
+import Footer from "@/Components/Mobile/footer.tsx";
 import styled from "styled-components";
 import KarinaImg from "@/assets/Karina.png"
 import fourCutImg from "@/assets/4cutImg.png"
@@ -21,6 +21,7 @@ export const Main = () => {
   };
 
   return (
+    <>
     <Layout>
       <Contents>
         {posts.map((post) => (
@@ -49,8 +50,9 @@ export const Main = () => {
           </PostLayout>
         ))}
       </Contents>
-      <Footer />
     </Layout>
+    <Footer />
+    </>
   );
 };
 
